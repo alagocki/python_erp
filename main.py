@@ -3,7 +3,7 @@ import sys
 from PyQt6 import QtSql
 from PyQt6.QtWidgets import QApplication, QMainWindow
 
-from Database.article import article
+from classes.article import article
 from GUI.frm_main import Ui_frm_main
 
 
