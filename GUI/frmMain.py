@@ -9,7 +9,7 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
-class Ui_frm_main(object):
+class UiFrmMain(object):
     def setupUi(self, frm_main):
         frm_main.setObjectName("frm_main")
         frm_main.resize(1200, 200)

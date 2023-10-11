@@ -3,7 +3,7 @@ from email import header
 from PyQt6.QtSql import QSqlQuery, QSqlRecord
 
 
-class article_repository():
+class ArticleRepository():
     def __init__(self):
         super().__init__()
 
