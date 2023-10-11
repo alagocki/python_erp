@@ -3,19 +3,20 @@ import sys
 from PyQt6 import QtSql
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
 
-from classes.article import article
-from GUI.frm_main import Ui_frm_main
+from classes.article import Article
+from GUI.frmMain import UiFrmMain
 
 
-class Frm_main(QMainWindow, Ui_frm_main):
+class FrmMain(QMainWindow, UiFrmMain):
     def __init__(self):
         super().__init__()
+        self.frm_article = None
         self.setupUi(self)
         self.actionBeenden.triggered.connect(self.close_win)
         self.actionArtikel_Liste.triggered.connect(self.open_article_win)
-        self.frm_article = article()
 
     def open_article_win(self):
+        self.frm_article = Article()
         self.frm_article.show()
 
     def close_win(self):
@@ -42,7 +43,7 @@ if not create_connection():
 
 def main():
     app = QApplication(sys.argv)
-    frm_main = Frm_main()
+    frm_main = FrmMain()
 
     frm_main.show()
 
