@@ -1,14 +1,15 @@
 import sqlite3
 
 from PyQt6 import QtSql, QtGui
-from PyQt6.QtWidgets import QWidget
 
-from GUI.frmArticle import UiFrmArticle
+from classes.abstract_class import AbstractClass
+
+from GUI.frm_article import Ui_frm_article
 from Repository.articlerepository import ArticleRepository
 from Services.messageService import MessageService
 
 
-class Article(QWidget, UiFrmArticle):
+class Article(Ui_frm_article, AbstractClass):
     def __init__(self):
         super().__init__()
         self.ms = MessageService()
@@ -19,23 +20,20 @@ class Article(QWidget, UiFrmArticle):
         self.mod_article_list.select()
         self.tbl_article_list.setModel(self.mod_article_list)
 
-
         self.func_mappingSignal()
 
     def func_mappingSignal(self):
         self.tbl_article_list.clicked.connect(self.set_artickle_details)
         self.btn_article_list_close.clicked.connect(self.close_win)
         self.btn_search_article.clicked.connect(self.get_article_details_by_search)
-        #self.btn_search_article.clicked.connect(lambda: self.set_message(message))
-
-
+        # self.btn_search_article.clicked.connect(lambda: self.set_message(message))
 
     def set_artickle_details(self, item):
         index = self.tbl_article_list.currentIndex().siblingAtColumn(0)
         article_id = index.data()
-        self.get_article_details(article_id)
+        self.get_article_details_by_id(article_id)
 
-    def get_article_details(self, id):
+    def get_article_details_by_id(self, id):
         ar = ArticleRepository()
         try:
             article_data = ar.get_article_by_id(id)
@@ -45,12 +43,11 @@ class Article(QWidget, UiFrmArticle):
         except sqlite3.DatabaseError as err:
             self.ms.set_message("ERROR (DB): " + str(err), self.lb_messages)
 
-
     def get_article_details_by_search(self):
         self.ms.set_message("", self.lb_messages)
         self.sku = self.ln_search_article.text()
         if self.sku == '':
-            self.ms.set_message("itte gültige SKU angeben", self.lb_messages)
+            self.ms.set_message("Bitte gültige SKU angeben", self.lb_messages)
         else:
             try:
                 ar = ArticleRepository()
@@ -70,5 +67,4 @@ class Article(QWidget, UiFrmArticle):
         self.input_name_edit.setText("")
         self.text_description_edit.setText("")
 
-    def close_win(self):
-        self.close()
+
