@@ -3,24 +3,29 @@ import sys
 from PyQt6 import QtSql
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
 
+from classes.abstract_class import AbstractClass
+
 from classes.article import Article
-from GUI.frmMain import UiFrmMain
+from GUI.frm_main import Ui_frm_main
+from classes.customer import Customer
 
 
-class FrmMain(QMainWindow, UiFrmMain):
+class FrmMain(QMainWindow, Ui_frm_main, AbstractClass):
     def __init__(self):
         super().__init__()
         self.frm_article = None
         self.setupUi(self)
-        self.actionBeenden.triggered.connect(self.close_win)
-        self.actionArtikel_Liste.triggered.connect(self.open_article_win)
 
-    def open_article_win(self):
-        self.frm_article = Article()
-        self.frm_article.show()
+        self.func_mappingSignal()
 
-    def close_win(self):
-        self.close()
+    def func_mappingSignal(self):
+        self.actionClose.triggered.connect(self.close_win)
+        self.actionArticle_List.triggered.connect(lambda: self.open_win(Article))
+        self.actionCustomer_List.triggered.connect(lambda: self.open_win(Customer))
+
+    def open_win(self, Obj):
+        self.frame = Obj()
+        self.frame.show()
 
 
 def create_connection():
