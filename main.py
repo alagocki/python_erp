@@ -1,16 +1,18 @@
 import sys
 
 from PyQt6 import QtSql
-from PyQt6.QtWidgets import QApplication, QMainWindow, QMessageBox
+from PyQt6.QtWidgets import QApplication, QMessageBox
 
 from classes.abstract_class import AbstractClass
+from classes.helper_class import HelperClass
 
 from classes.article import Article
-from GUI.frm_main import Ui_frm_main
 from classes.customer import Customer
+from classes.order import Order
+from GUI.frm_main import Ui_frm_main
 
 
-class FrmMain(QMainWindow, Ui_frm_main, AbstractClass):
+class FrmMain(Ui_frm_main, AbstractClass):
     def __init__(self):
         super().__init__()
         self.frm_article = None
@@ -19,14 +21,15 @@ class FrmMain(QMainWindow, Ui_frm_main, AbstractClass):
         self.func_mappingSignal()
 
     def func_mappingSignal(self):
-        self.actionClose.triggered.connect(self.close_win)
-        self.actionArticle_List.triggered.connect(lambda: self.open_win(Article))
-        self.actionCustomer_List.triggered.connect(lambda: self.open_win(Customer))
+        self.actionClose.triggered.connect(lambda: HelperClass.close_win(self))
+        self.btn_close_main.clicked.connect(lambda: HelperClass.close_win(self))
+        self.actionArticle_List.triggered.connect(lambda: HelperClass.open_win(self, Article))
+        self.actionCustomer_List.triggered.connect(lambda: HelperClass.open_win(self, Customer))
+        self.actionOrder_List.triggered.connect(lambda: HelperClass.open_win(self, Order))
 
     def open_win(self, Obj):
         self.frame = Obj()
         self.frame.show()
-
 
 def create_connection():
     db = QtSql.QSqlDatabase.addDatabase("QSQLITE")

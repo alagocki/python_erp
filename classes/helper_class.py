@@ -1,18 +1,18 @@
-from abc import ABC, abstractmethod
 from PyQt6.QtWidgets import QMainWindow
-
 from PyQt6.QtWidgets import QWidget
 
 
-class AbstractClass(QMainWindow, QWidget):
+class HelperClass(QMainWindow, QWidget):
+
     def __init__(self):
         super().__init__()
 
-    @abstractmethod
+    @staticmethod
     def open_win(self, Obj):
         self.frame = Obj()
         self.frame.show()
 
-    @abstractmethod
+    @staticmethod
     def close_win(self):
         self.close()
+

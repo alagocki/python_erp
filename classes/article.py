@@ -1,8 +1,9 @@
 import sqlite3
 
-from PyQt6 import QtSql, QtGui
+from PyQt6 import QtSql
 
 from classes.abstract_class import AbstractClass
+from classes.helper_class import HelperClass
 
 from GUI.frm_article import Ui_frm_article
 from Repository.articlerepository import ArticleRepository
@@ -15,7 +16,6 @@ class Article(Ui_frm_article, AbstractClass):
         self.ms = MessageService()
         self.setupUi(self)
         self.mod_article_list = QtSql.QSqlRelationalTableModel()
-
         self.mod_article_list.setQuery("select a.id as ID, a.nummer as SKU, a.name_de as Bezeichnung from article a")
         self.mod_article_list.select()
         self.tbl_article_list.setModel(self.mod_article_list)
@@ -24,7 +24,7 @@ class Article(Ui_frm_article, AbstractClass):
 
     def func_mappingSignal(self):
         self.tbl_article_list.clicked.connect(self.set_artickle_details)
-        self.btn_article_list_close.clicked.connect(self.close_win)
+        self.btn_article_list_close.clicked.connect(lambda: HelperClass.close_win(self))
         self.btn_search_article.clicked.connect(self.get_article_details_by_search)
         # self.btn_search_article.clicked.connect(lambda: self.set_message(message))
 

@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_frm_customer(object):
     def setupUi(self, frm_customer):
         frm_customer.setObjectName("frm_customer")
-        frm_customer.resize(1800, 1400)
+        frm_customer.resize(1728, 1600)
         self.verticalLayoutWidget = QtWidgets.QWidget(parent=frm_customer)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 1781, 1301))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
@@ -22,6 +22,25 @@ class Ui_frm_customer(object):
         self.tbl_customer_list = QtWidgets.QTableView(parent=self.verticalLayoutWidget)
         self.tbl_customer_list.setObjectName("tbl_customer_list")
         self.verticalLayout.addWidget(self.tbl_customer_list)
+        self.verticalLayoutWidget_7 = QtWidgets.QWidget(parent=frm_customer)
+        self.verticalLayoutWidget_7.setGeometry(QtCore.QRect(10, 1346, 211, 41))
+        self.verticalLayoutWidget_7.setObjectName("verticalLayoutWidget_7")
+        self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_7)
+        self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_7.setObjectName("verticalLayout_7")
+        self.btn_customer_list_close = QtWidgets.QPushButton(parent=self.verticalLayoutWidget_7)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.btn_customer_list_close.sizePolicy().hasHeightForWidth())
+        self.btn_customer_list_close.setSizePolicy(sizePolicy)
+        self.btn_customer_list_close.setObjectName("btn_customer_list_close")
+        self.verticalLayout_7.addWidget(self.btn_customer_list_close)
+        self.line = QtWidgets.QFrame(parent=frm_customer)
+        self.line.setGeometry(QtCore.QRect(10, 1320, 1781, 31))
+        self.line.setFrameShape(QtWidgets.QFrame.Shape.HLine)
+        self.line.setFrameShadow(QtWidgets.QFrame.Shadow.Sunken)
+        self.line.setObjectName("line")
 
         self.retranslateUi(frm_customer)
         QtCore.QMetaObject.connectSlotsByName(frm_customer)
@@ -29,3 +48,4 @@ class Ui_frm_customer(object):
     def retranslateUi(self, frm_customer):
         _translate = QtCore.QCoreApplication.translate
         frm_customer.setWindowTitle(_translate("frm_customer", "Kunden"))
+        self.btn_customer_list_close.setText(_translate("frm_customer", "Schließen"))
