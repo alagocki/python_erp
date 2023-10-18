@@ -1,7 +1,5 @@
 import sys
-
-from PyQt6 import QtSql
-from PyQt6.QtWidgets import QApplication, QMessageBox
+from PyQt6.QtWidgets import QApplication
 
 from Classes.abstract_class import AbstractClass
 from Helper.helper_class import HelperClass
@@ -30,23 +28,6 @@ class FrmMain(Ui_frm_main, AbstractClass):
     def open_win(self, Obj):
         self.frame = Obj()
         self.frame.show()
-
-def create_connection():
-    db = QtSql.QSqlDatabase.addDatabase("QSQLITE")
-    db.setDatabaseName("Database/tg_wawision")
-
-    if not db.open():
-        QMessageBox.critical(
-            None,
-            "QTableView Example - Error!",
-            "Database Error: %s" % db.lastError().databaseText(),
-        )
-        return False
-    return True
-
-
-if not create_connection():
-    sys.exit(1)
 
 
 def main():

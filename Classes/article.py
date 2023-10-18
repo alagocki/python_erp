@@ -1,7 +1,8 @@
 import sqlite3
 
+import mysql
 from PyQt6 import QtSql
-
+from Helper.database_class import create_connection
 from Classes.abstract_class import AbstractClass
 from Helper.helper_class import HelperClass
 
@@ -15,10 +16,25 @@ class Article(Ui_frm_article, AbstractClass):
         super().__init__()
         self.ms = MessageService()
         self.setupUi(self)
-        self.mod_article_list = QtSql.QSqlRelationalTableModel()
-        self.mod_article_list.setQuery("select a.id as ID, a.nummer as SKU, a.name_de as Bezeichnung from article a")
-        self.mod_article_list.select()
-        self.tbl_article_list.setModel(self.mod_article_list)
+
+        try:
+            connction = create_connection()
+            with connction.cursor() as cursor:
+                result = cursor.execute("SELECT * FROM artikel LIMIT 5")
+
+                rows = cursor.fetchall()
+
+                for rows in rows:
+                    print(result)
+        except (mysql.connector.Error, IOError) as err:
+            print(err)
+
+
+
+        # self.mod_article_list = QtSql.QSqlRelationalTableModel()
+        # self.mod_article_list.setQuery("select a.id as ID, a.nummer as SKU, a.name_de as Bezeichnung from article a")
+        # self.mod_article_list.select()
+        # self.tbl_article_list.setModel(self.mod_article_list)
 
         self.func_mappingSignal()
 
