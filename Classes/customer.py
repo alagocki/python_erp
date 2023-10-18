@@ -1,9 +1,7 @@
-import sqlite3
+from PyQt6 import QtSql
 
-from PyQt6 import QtSql, QtGui
-
-from classes.abstract_class import AbstractClass
-from classes.helper_class import HelperClass
+from Classes.abstract_class import AbstractClass
+from Helper.helper_class import HelperClass
 
 from GUI.frm_customer import Ui_frm_customer
 from Services.messageService import MessageService

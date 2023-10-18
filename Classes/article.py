@@ -2,8 +2,8 @@ import sqlite3
 
 from PyQt6 import QtSql
 
-from classes.abstract_class import AbstractClass
-from classes.helper_class import HelperClass
+from Classes.abstract_class import AbstractClass
+from Helper.helper_class import HelperClass
 
 from GUI.frm_article import Ui_frm_article
 from Repository.articlerepository import ArticleRepository
