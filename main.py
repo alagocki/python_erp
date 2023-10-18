@@ -3,12 +3,12 @@ import sys
 from PyQt6 import QtSql
 from PyQt6.QtWidgets import QApplication, QMessageBox
 
-from classes.abstract_class import AbstractClass
-from classes.helper_class import HelperClass
+from Classes.abstract_class import AbstractClass
+from Helper.helper_class import HelperClass
 
-from classes.article import Article
-from classes.customer import Customer
-from classes.order import Order
+from Classes.article import Article
+from Classes.customer import Customer
+from Classes.order import Order
 from GUI.frm_main import Ui_frm_main
 
 
