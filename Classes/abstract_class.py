@@ -4,6 +4,6 @@ from PyQt6.QtWidgets import QMainWindow
 from PyQt6.QtWidgets import QWidget
 
 
-class AbstractClass(QMainWindow, QWidget):
+class abstractClass(QMainWindow, QWidget):
     def __init__(self):
         super().__init__()

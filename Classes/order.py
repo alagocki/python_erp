@@ -1,16 +1,16 @@
 from PyQt6 import QtSql
 
-from Classes.abstract_class import AbstractClass
-from Helper.helper_class import HelperClass
+from Classes.abstract_class import abstractClass
+from Helper.helper_class import helperClass
 
 from GUI.frm_order import Ui_frm_order
-from Services.messageService import MessageService
+from Services.message_service import messageService
 
 
-class Order(Ui_frm_order, AbstractClass):
+class order(Ui_frm_order, abstractClass):
     def __init__(self):
         super().__init__()
-        self.ms = MessageService()
+        self.ms = messageService()
         self.setupUi(self)
         self.mod_order_list = QtSql.QSqlRelationalTableModel()
         #self.mod_order_list.setTable("order")
@@ -34,7 +34,7 @@ class Order(Ui_frm_order, AbstractClass):
         self.func_mappingSignal()
 
     def func_mappingSignal(self):
-        self.btn_order_list_close.clicked.connect(lambda: HelperClass.close_win(self))
+        self.btn_order_list_close.clicked.connect(lambda: helperClass.close_win(self))
 
 
 
