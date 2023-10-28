@@ -1,7 +1,7 @@
 from PyQt6 import QtGui
 
 
-class MessageService():
+class messageService():
 
     def __init__(self):
         super().__init__()
