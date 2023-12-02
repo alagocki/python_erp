@@ -19,16 +19,17 @@ class articleRepository:
         return self.prepare_single_result(query_string)
 
     def get_all_article(self):
+        pass
 
-        try:
-            connection = databaseClass.create_connection()
-            with (connection.cursor() as cursor):
-                cursor.execute(
-                    "select a.id, a.nummer, a.hersteller, a.ean, a.fx_erstellt_am, a.name_de from artikel a limit 0, " + str(helperClass.get_items_per_page()))
-                rows = cursor.fetchall()
-                return rows
-        except (mysql.connector.Error, IOError) as err:
-            raise err
+        # try:
+        #     connection = databaseClass.create_connection()
+        #     with (connection.cursor() as cursor):
+        #         cursor.execute(
+        #             "select a.id, a.nummer, a.hersteller, a.ean, a.fx_erstellt_am, a.name_de from artikel a limit 0, " + str(helperClass.get_items_per_page()))
+        #         rows = cursor.fetchall()
+        #         return rows
+        # except (mysql.connector.Error, IOError) as err:
+        #     raise err
 
     def prepare_single_result(self, query_string):
         self.query = QSqlQuery(query_string)

@@ -1,41 +1,34 @@
-from PyQt6 import QtSql
-
+from mysql.connector.logger import logger
+from PyQt6.QtGui import QStandardItemModel, QStandardItem
 from Classes.abstract_class import abstractClass
 from Helper.helper_class import helperClass
-
 from GUI.frm_order import Ui_frm_order
+from Repository.order_repository import orderRepository
 from Services.message_service import messageService
+from Model.order import create_db_and_tables_orders
+from Helper.table_helper_class import tableHelperClass
+import yaml
 
 
 class order(Ui_frm_order, abstractClass):
+
     def __init__(self):
         super().__init__()
+        self.model = None
         self.ms = messageService()
         self.setupUi(self)
-        self.mod_order_list = QtSql.QSqlRelationalTableModel()
-        #self.mod_order_list.setTable("order")
-        self.mod_order_list.setQuery("""select 
-                                            o.datum as Datum, 
-                                            o.internet as Bestellnr, 
-                                            o.belegnr as Beleg,
-                                            o.gesamtsumme as Betrag, 
-                                            o.status as Status,
-                                            o.liefername as Liefername,
-                                            o.lieferstrasse as Lieferstrasse,
-                                            o.lieferplz as LieferPLZ,
-                                            o.lieferort as Lieferort,
-                                            o.lieferland as Lieferland,
-                                            o.zahlungsweise as Zahlungsweise,
-                                            o.name as Name
-                                        from 'order' o""")
-        self.mod_order_list.select()
-        self.tbl_order_list.setModel(self.mod_order_list)
+
+        create_db_and_tables_orders()
 
         self.func_mappingSignal()
+        self.data_view()
 
     def func_mappingSignal(self):
         self.btn_order_list_close.clicked.connect(lambda: helperClass.close_win(self))
 
-
-
-
+    def data_view(self):
+        try:
+            model = tableHelperClass.get_table(self, 'order', orderRepository)
+            self.tbl_order_list.setModel(model)
+        except Exception as err:
+            logger.exception('Failed: ' + str(err))
