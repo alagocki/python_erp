@@ -36,7 +36,6 @@ class helperClass(QMainWindow, QWidget):
         btn.setFixedSize(40, 50)
         layout.addWidget(btn)
 
-
     @staticmethod
     def get_items_per_page():
         return 250

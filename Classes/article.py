@@ -1,12 +1,8 @@
 import sqlite3
-
-import mysql
 from PyQt6.QtGui import QStandardItemModel, QStandardItem
 from mysql.connector.logger import logger
-
 from Classes.abstract_class import abstractClass
 from Helper.helper_class import helperClass
-
 from GUI.frm_article import Ui_frm_article
 from Repository.article_repository import articleRepository
 from Services.message_service import messageService
@@ -16,6 +12,7 @@ class article(Ui_frm_article, abstractClass):
     def __init__(self):
         super().__init__()
 
+        self.model = None
         self.ms = messageService()
         self.setupUi(self)
         self.data_view()

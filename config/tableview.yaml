@@ -1,0 +1,5 @@
+colums:
+  table:
+    order:
+      header: ['ID', 'Beleg', 'Internet', 'erstellt am', 'Gesamtsumme', 'Name']
+      index: ["id", "document_no", "transaction_no", "created_at", "total", "name"]
